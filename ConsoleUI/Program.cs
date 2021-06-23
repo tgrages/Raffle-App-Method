@@ -1,21 +1,106 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace ConsoleUI
 {
-    class Program
+	class Program
     {
-        static void Main(string[] args)
-        {
+      
+        //Start writing your code here
 
+
+        private static Dictionary<int, string> guests = new Dictionary<int, string>();
+        private static int min = 1000;
+        private static int max = 9999;
+        private static int raffleNumber;
+        private static Random _rdm = new Random();
+
+        //Method 1 - Call this method and pass the string method as an argument. This method will return the data you collect from the user, just like Console.ReadLine return as a string output
+        static string GetUserInput(string message)
+        {
+            Console.WriteLine(message);
+            string response = Console.ReadLine();
+            return response; 
+        }
+
+        //Method 2 -
+        static void GetUserInfo()
+        {
+            string name;
+            string otherGuest;
+
+            //Want do to ask name of guest and assign guest number
+            //store first name entered and store random number
+
+            do
+            {                
+                name = GetUserInput("Please enter your name ");
+                //generate random number
+                raffleNumber = GenerateRandomNumber(min, max);
+                //add random number and name to dictionary
+                AddGuestsInRaffle(raffleNumber, name);
+                otherGuest = GetUserInput("Do you want to add another name? ").ToLower();             
+            }
+
+            while (otherGuest == "yes");
+
+            PrintGuestName();                       
 
         }
 
-        //Start writing your code here
+        //Method 3
+
+        static int GenerateRandomNumber(int min, int max)
+        {
+            return _rdm.Next(min, max);
+        }
+
+        //Method 4
+        static void AddGuestsInRaffle(int raffleNumber, string name)
+        {
+            guests.Add(raffleNumber, name);
+        }
+
+        //Method 5
+        static void PrintGuestName()
+        {
+            foreach (var i in guests)
+            {
+                Console.WriteLine(i);
+            }
+        }
+
+        //Method 6
+        static int GetRaffleNumber(Dictionary<int, string> people)
+        {
+            List<int> raffleNumber = people.Keys.ToList();
+            int i = _rdm.Next(raffleNumber.Count);
+            int winnerNumber = raffleNumber[i];
+            return winnerNumber;
+        }
+
+        //Method 7
+        static void PrintWinner()
+        {
+            int winnerNumber = GetRaffleNumber(guests);
+            string winnerName = 
+            Console.WriteLine($"The winner is: {winnerName} with the #{winnerNumber}");
+
+        static void Main(string[] args)
+        {
+            GetUserInfo();
+            Console.ReadLine();
+
+        }
+
+
+
+
+
+
+
 
 
 
