@@ -43,7 +43,7 @@ namespace ConsoleUI
                 otherGuest = GetUserInput("Do you want to add another name? ").ToLower();             
             }
 
-            while (otherGuest == "yes");
+            while (otherGuest == "yes" || name == "");
 
             //PrintGuestName();                       
 
@@ -91,9 +91,9 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the Party!!");
-            GetUserInfo();
-            PrintGuestName();
+            GetUserInfo();            
             MultiLineAnimation();
+            PrintGuestName();
             PrintWinner();
             Console.ReadLine();
         }
