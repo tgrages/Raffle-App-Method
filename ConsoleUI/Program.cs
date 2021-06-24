@@ -10,7 +10,6 @@ namespace ConsoleUI
       
         //Start writing your code here
 
-
         private static Dictionary<int, string> guests = new Dictionary<int, string>();
         private static int min = 1000;
         private static int max = 9999;
@@ -46,7 +45,7 @@ namespace ConsoleUI
 
             while (otherGuest == "yes");
 
-            PrintGuestName();                       
+            //PrintGuestName();                       
 
         }
 
@@ -85,26 +84,19 @@ namespace ConsoleUI
         static void PrintWinner()
         {
             int winnerNumber = GetRaffleNumber(guests);
-            string winnerName = 
+            string winnerName = guests[winnerNumber];
             Console.WriteLine($"The winner is: {winnerName} with the #{winnerNumber}");
 
+        }
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to the Party!!");
             GetUserInfo();
+            PrintGuestName();
+            MultiLineAnimation();
+            PrintWinner();
             Console.ReadLine();
-
         }
-
-
-
-
-
-
-
-
-
-
-
 
 
         static void MultiLineAnimation() // Credit: https://www.michalbialecki.com/2018/05/25/how-to-make-you-console-app-look-cool/
