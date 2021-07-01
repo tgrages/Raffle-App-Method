@@ -11,8 +11,8 @@ namespace ConsoleUI
         //Start writing your code here
 
         private static Dictionary<int, string> guests = new Dictionary<int, string>();
-        private static int min = 1000;
-        private static int max = 9999;
+        private static int min = 1;
+        private static int max = 5;
         private static int raffleNumber;
         private static Random _rdm = new Random();
 
@@ -42,7 +42,11 @@ namespace ConsoleUI
                     GetUserInfo();
                 }
                 //generate random number
-                raffleNumber = GenerateRandomNumber(min, max);
+                while (guests.Keys.Contains(raffleNumber))
+                {
+                    raffleNumber = GenerateRandomNumber(min, max);
+                }
+
                 //add random number and name to dictionary
                 AddGuestsInRaffle(raffleNumber, name);
                 otherGuest = GetUserInput("Do you want to add another name? ").ToLower();
