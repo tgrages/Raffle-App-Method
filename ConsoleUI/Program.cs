@@ -34,26 +34,31 @@ namespace ConsoleUI
             //store first name entered and store random number
 
             do
-            {                
+            {
                 name = GetUserInput("Please enter your name ");
+                if (name == "")
+                {
+                    Console.WriteLine("Please enter a valid input.");
+                    GetUserInfo();
+                }
                 //generate random number
                 raffleNumber = GenerateRandomNumber(min, max);
                 //add random number and name to dictionary
                 AddGuestsInRaffle(raffleNumber, name);
-                otherGuest = GetUserInput("Do you want to add another name? ").ToLower();             
+                otherGuest = GetUserInput("Do you want to add another name? ").ToLower();
             }
 
-            while (otherGuest == "yes" || name == "");
+            while (otherGuest == "yes");
+                   
 
-            //PrintGuestName();                       
-
-        }
+		}
 
         //Method 3
 
         static int GenerateRandomNumber(int min, int max)
         {
-            return _rdm.Next(min, max);
+            int randomNumber = _rdm.Next(min, max);
+            return randomNumber;
         }
 
         //Method 4
